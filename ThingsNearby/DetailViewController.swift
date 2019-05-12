@@ -44,13 +44,12 @@ class DetailViewController: UIViewController {
     
     @IBAction func openArticle(_ sender: Any) {
         
-        // Show web view with image for now
+        guard let pageURL = page?.fullurl else { return }
         
-        guard let imageURL = page?.original?.source else { return }
-        
-        let url = URL(string: imageURL)!
+        let url = URL(string: pageURL)!
         
         let webViewController = SFSafariViewController(url: url)
+        webViewController.modalPresentationStyle = .overFullScreen
         present(webViewController, animated: true, completion: nil)
     }
     
